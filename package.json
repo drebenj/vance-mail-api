@@ -1,0 +1,22 @@
+{
+  "name": "vance-mail",
+  "version": "1.0.0",
+  "description": "vance mailing list",
+  "main": "index.js",
+  "author": "Josh Dreben",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "is-empty": "^1.2.0",
+    "mailchimp-api-v3": "^1.14.0",
+    "validator": "^13.1.1"
+  }
+}
