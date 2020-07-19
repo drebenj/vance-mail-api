@@ -20,6 +20,11 @@ app.use(bodyParser.json());
 
 app.use("/member", route);
 
+app.use(express.static("public"));
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
