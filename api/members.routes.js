@@ -17,7 +17,7 @@ router.get("/list", (req, res) => {
       res.json(list);
     })
     .catch((err) => {
-      res.status(err.status ?? 400).json(err);
+      res.status(err.status ? err.status : 400).json(err);
     });
 });
 
@@ -36,7 +36,7 @@ router.post("/subscribe", async (req, res) => {
       res.json(response);
     })
     .catch((err) => {
-      res.status(err.status ?? 400).json(err);
+      res.status(err.status ? err.status : 400).json(err);
     });
 });
 
