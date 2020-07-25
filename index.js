@@ -18,7 +18,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use("/member", route);
+app.use("/members", route);
 
 app.use(express.static("public"));
 app.get("/", (req, res) => {
