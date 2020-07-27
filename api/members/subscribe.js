@@ -1,13 +1,25 @@
-const middy = require("middy");
-const { cors } = require("middy/middlewares");
-
 const LIST_ID = process.env.MAILCHIMP_LIST_ID;
 const API_KEY = process.env.MAILCHIMP_API_KEY;
 
 const Mailchimp = require("mailchimp-api-v3");
 const mailchimp = new Mailchimp(API_KEY);
 
-const subscribe = async (req, res) => {
+const allowCors = (fn) => async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  );
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+  return await fn(req, res);
+};
+
+const handler = async (req, res) => {
   const data = {
     email_address: req.body.email,
     status: "subscribed",
@@ -22,5 +34,4 @@ const subscribe = async (req, res) => {
     });
 };
 
-const handler = middy(subscribe).use(cors());
-module.exports = { handler };
+module.exports = allowCors(handler);
