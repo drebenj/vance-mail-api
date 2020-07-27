@@ -1,10 +1,13 @@
+const middy = require("middy");
+const { cors } = require("middy/middlewares");
+
 const LIST_ID = process.env.MAILCHIMP_LIST_ID;
 const API_KEY = process.env.MAILCHIMP_API_KEY;
 
 const Mailchimp = require("mailchimp-api-v3");
 const mailchimp = new Mailchimp(API_KEY);
 
-module.exports = async (req, res) => {
+const subscribe = async (req, res) => {
   res.setHeader("access-control-allow-origin", "*");
   res.setHeader("access-control-allow-methods", "POST");
   const data = {
@@ -20,3 +23,6 @@ module.exports = async (req, res) => {
       res.status(err.status ? err.status : 400).json(err);
     });
 };
+
+const handler = middy(subscribe).use(cors());
+module.exports = { handler };
