@@ -8,8 +8,6 @@ const Mailchimp = require("mailchimp-api-v3");
 const mailchimp = new Mailchimp(API_KEY);
 
 const subscribe = async (req, res) => {
-  res.setHeader("access-control-allow-origin", "*");
-  res.setHeader("access-control-allow-methods", "POST");
   const data = {
     email_address: req.body.email,
     status: "subscribed",
