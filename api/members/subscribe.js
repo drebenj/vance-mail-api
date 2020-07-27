@@ -6,11 +6,7 @@ const mailchimp = new Mailchimp(API_KEY);
 
 module.exports = async (req, res) => {
   res.setHeader("access-control-allow-origin", "*");
-  res.setHeader("access-control-allow-methods", "POST,OPTIONS");
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
+  res.setHeader("access-control-allow-methods", "POST");
   const data = {
     email_address: req.body.email,
     status: "subscribed",
