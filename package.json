@@ -15,6 +15,6 @@
     "is-empty": "^1.2.0",
     "mailchimp-api-v3": "^1.14.0",
     "middy": "^0.36.0",
-    "validator": "^13.1.1"
+    "validator": "^13.7.0"
   }
 }
